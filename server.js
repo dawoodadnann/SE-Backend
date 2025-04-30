@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import menuRoutes from './routes/menuRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';  
+import cartRoutes from './routes/cartRoutes.js';
 
 
 dotenv.config();
@@ -17,6 +18,8 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api',    menuRoutes);
 app.use('/api', orderRoutes);   
+app.use("/api/cart", cartRoutes);
+
 
 
 mongoose.connect(process.env.MONGO_URI)

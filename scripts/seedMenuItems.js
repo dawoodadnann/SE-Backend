@@ -101,7 +101,7 @@ const seedMenu = async () => {
 
   // 3️⃣ Insert into DB
   try {
-    await MenuItem.deleteMany();          // clear existing items (optional)
+    //await MenuItem.deleteMany();          // clear existing items (optional)
     await MenuItem.insertMany(menuItems);  // seed new items
     console.log('✅ Menu items seeded successfully!');
   } catch (err) {
