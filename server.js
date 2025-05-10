@@ -7,6 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import menuRoutes from './routes/menuRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';  
 import cartRoutes from './routes/cartRoutes.js';
+import menuItemRoutes from './routes/menuItemRoutes.js';
 
 
 dotenv.config();
@@ -19,6 +20,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api',    menuRoutes);
 app.use('/api', orderRoutes);   
 app.use("/api/cart", cartRoutes);
+app.use('/api', menuItemRoutes); // now your route will be available at /api/menu/add
+
 
 
 
