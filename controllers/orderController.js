@@ -42,3 +42,43 @@ export const cancelOrder = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+
+export const createOrder = async (req, res) => {
+  try {
+    const { userId, items, totalPrice } = req.body;
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: 'No items in the order' });
+    }
+
+    const newOrder = new Order({
+      userId,
+      items,
+      totalPrice,
+      status: 'Pending',
+    });
+
+    await newOrder.save();
+    res.status(201).json({ message: 'Order created successfully', order: newOrder });
+  } catch (err) {
+    console.error('Creation error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+import Order from '../models/Order.js';
+
+export const getOrderHistory = async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate('userId', 'name email')  // optional
+      .populate('items.menuItemId', 'name price');
+
+    res.status(200).json(orders);
+  } catch (err) {
+    console.error('Error fetching order history:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+

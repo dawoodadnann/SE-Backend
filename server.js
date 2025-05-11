@@ -1,3 +1,4 @@
+
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -13,6 +14,7 @@ import menuItemRoutes from './routes/menuItemRoutes.js';
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Auth & Menu APIs
@@ -21,7 +23,6 @@ app.use('/api',    menuRoutes);
 app.use('/api', orderRoutes);   
 app.use("/api/cart", cartRoutes);
 app.use('/api', menuItemRoutes); // now your route will be available at /api/menu/add
-
 
 
 
