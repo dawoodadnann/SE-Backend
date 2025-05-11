@@ -8,9 +8,9 @@ export const approveOrder = async (req, res) => {
     const order = await Order.findById(orderId);
     if (!order) return res.status(404).json({ message: 'Order not found' });
 
-    if (order.status !== 'Pending') {
-      return res.status(400).json({ message: 'Only pending orders can be approved' });
-    }
+    // if (order.status !== 'Pending') {
+    //   return res.status(400).json({ message: 'Only pending orders can be approved' });
+    // }
 
     order.status = 'Approved';
     await order.save();
@@ -29,9 +29,9 @@ export const cancelOrder = async (req, res) => {
     const order = await Order.findById(orderId);
     if (!order) return res.status(404).json({ message: 'Order not found' });
 
-    if (order.status !== 'Pending') {
-      return res.status(400).json({ message: 'Only pending orders can be cancelled' });
-    }
+    // if (order.status !== 'Pending') {
+    //   return res.status(400).json({ message: 'Only pending orders can be cancelled' });
+    // }
 
     order.status = 'Cancelled';
     await order.save();
@@ -67,12 +67,12 @@ export const createOrder = async (req, res) => {
   }
 };
 
-import Order from '../models/Order.js';
+//import Order from '../models/Order.js';
 
 export const getOrderHistory = async (req, res) => {
   try {
     const orders = await Order.find()
-      .populate('userId', 'name email')  // optional
+      .populate('userId', 'name email')
       .populate('items.menuItemId', 'name price');
 
     res.status(200).json(orders);
@@ -81,4 +81,5 @@ export const getOrderHistory = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 

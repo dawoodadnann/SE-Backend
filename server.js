@@ -9,7 +9,7 @@ import menuRoutes from './routes/menuRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';  
 import cartRoutes from './routes/cartRoutes.js';
 import menuItemRoutes from './routes/menuItemRoutes.js';
-
+import FeedbackRoutes from './routes/feedbackRoutes.js'
 
 dotenv.config();
 const app = express();
@@ -23,7 +23,7 @@ app.use('/api',    menuRoutes);
 app.use('/api', orderRoutes);   
 app.use("/api/cart", cartRoutes);
 app.use('/api', menuItemRoutes); // now your route will be available at /api/menu/add
-
+app.use('/api', FeedbackRoutes)
 
 
 mongoose.connect(process.env.MONGO_URI)
